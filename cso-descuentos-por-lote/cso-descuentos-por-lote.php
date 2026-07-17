@@ -2,7 +2,7 @@
 /**
  * Plugin Name: CSO - Descuentos por Lote
  * Description: Descuentos automáticos por volumen (packs) en el carrito de WooCommerce, con niveles, colores y etiquetas excluidas configurables desde un panel propio.
- * Version: 2.3.1
+ * Version: 2.4.1
  * Author: Cristóbal Sánchez Orellana
  * Text Domain: cso-descuentos-lote
  * Requires Plugins: woocommerce
@@ -299,15 +299,19 @@ class CSO_Descuentos_Por_Lote {
      *  PANEL DE ADMINISTRACIÓN
      * ========================================================= */
     public function add_settings_page() {
-        add_menu_page(
-            'CSO',
-            'CSO',
-            'manage_woocommerce',
-            self::MENU_SLUG,
-            array( $this, 'render_settings_page' ),
-            'dashicons-tag',
-            56
-        );
+        // Si ningún otro plugin "CSO" ya creó el menú padre, lo creamos nosotros.
+        // Así este plugin funciona igual de bien solo, o junto a otros plugins CSO.
+        if ( ! isset( $GLOBALS['admin_page_hooks'][ self::MENU_SLUG ] ) ) {
+            add_menu_page(
+                'CSO',
+                'CSO',
+                'manage_woocommerce',
+                self::MENU_SLUG,
+                array( $this, 'render_settings_page' ),
+                'dashicons-store',
+                56
+            );
+        }
 
         add_submenu_page(
             self::MENU_SLUG,
@@ -318,8 +322,11 @@ class CSO_Descuentos_Por_Lote {
             array( $this, 'render_settings_page' )
         );
 
-        // Evita el submenú duplicado que WordPress genera automáticamente
-        // con el mismo slug que el menú principal.
+        // WordPress agrega automáticamente un submenú "fantasma" que duplica
+        // el nombre del menú padre la primera vez que se registra un submenú.
+        // Lo quitamos aquí (después de agregar el submenú, que es cuando WP
+        // realmente lo crea). Si otro plugin CSO ya lo quitó antes, esta
+        // llamada simplemente no hace nada.
         remove_submenu_page( self::MENU_SLUG, self::MENU_SLUG );
     }
 
