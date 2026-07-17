@@ -5,7 +5,7 @@ Requires at least: 6.0
 Tested up to: 6.6
 Requires PHP: 7.4
 Requires Plugins: woocommerce
-Stable tag: 2.3.1
+Stable tag: 2.4.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -33,6 +33,10 @@ CSO - Descuentos por Lote agrega packs de descuento configurables al carrito de 
 * WooCommerce activo (obligatorio).
 * Elementor u otro constructor de páginas es opcional — solo se necesita si quieres insertar los shortcodes manualmente con un widget visual. El plugin funciona igual sin él.
 
+**Nota sobre el menú de administración**
+
+Este plugin registra su panel bajo un menú "CSO" en el admin de WordPress. Si también tienes instalado el plugin "CSO - Botón WhatsApp Pedido", ambos comparten el mismo menú padre — no es necesario tener uno instalado para que el otro funcione.
+
 == Installation ==
 
 1. Descarga el `.zip` del plugin.
@@ -56,6 +60,12 @@ Al desinstalarlo (no solo desactivarlo), se eliminan automáticamente las opcion
 Sí, puedes agregar tantos niveles como quieras desde el panel de administración.
 
 == Changelog ==
+
+= 2.4.1 =
+* Corrección: el submenú "fantasma" que WordPress agrega automáticamente (duplicando el nombre del menú padre "CSO") ahora se elimina en el momento correcto, evitando que apareciera un ítem "CSO" repetido dentro del propio menú CSO.
+
+= 2.4.0 =
+* El menú de administración ahora es compartido: si tienes instalado también el plugin "CSO - Botón WhatsApp Pedido", ambos aparecen bajo un mismo menú padre "CSO" en vez de tener cada uno su propio menú de nivel superior.
 
 = 2.3.1 =
 * Se eliminó el texto explicativo bajo "Dónde mostrar el aviso de progreso".
