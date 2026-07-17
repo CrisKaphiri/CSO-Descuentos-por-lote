@@ -42,7 +42,15 @@ Todo es configurable desde el panel **CSO → Descuentos por Lote**: no es neces
 
 ## Capturas de pantalla
 
-> _Agrega aquí capturas del panel de administración (tabla de niveles, selector de colores, y el aviso renderizado en el mini carrito)._
+![Panel](screenshots/panel.png)
+
+---
+
+![Cart](screenshots/cart.png)
+
+---
+
+![Minicart](screenshots/minicart.png)
 
 ## Estructura del repositorio
 
